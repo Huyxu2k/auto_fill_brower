@@ -1,6 +1,7 @@
 import os
 import pandas 
 from loguru import logger
+from models.person import Person
 
 class ReaderManager:
     def __init__(self, file_path):
@@ -24,13 +25,23 @@ class ReaderManager:
             if not self.validate():
                 return []
             
-            data = pandas.read_excel(self.file_path)
+            # bỏ dòng header đầu tiên
+            data = pandas.read_excel(self.file_path, header = None, skiprows = 1)
 
             if data.empty:
                 logger.warning(f"File Excel không có dữ liệu")
                 return []
             
-            return data.to_dict(orient="records")
+            persons = []
+            for _, row in data.iterrows():
+                person = Person(
+                    id=str(row[0]).strip(),           
+                    name=str(row[1]).strip(),  
+                    yob=str(row[2]).strip(),     
+                    state=bool(row[3])
+                )
+                persons.append(person)
+            #return data.to_dict(orient="records")
 
         except Exception as ex:
             logger.exception(f"Lỗi khi đọc file Excel: {str(ex)}") 
