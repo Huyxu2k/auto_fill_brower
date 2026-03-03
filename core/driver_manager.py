@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 class DriverManager:
-    PROFILE_PATH = r""
+    PROFILE_PATH = r"C:\Users\huynv\AppData\Local\Google\Chrome\User Data\Profile 2"
 
     @staticmethod
     def init_brower(headless = False):

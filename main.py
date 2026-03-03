@@ -3,8 +3,8 @@ from loguru import logger
 
 
 from config import *
-from core import browser
-from core import excel_reader
+from core import driver_manager
+from core import reader_manager
 
 def main():
     #1. Đọc dữ liệu từ nguồn
