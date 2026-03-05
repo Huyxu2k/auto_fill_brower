@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from loguru import logger
+import os
 
 class DriverManager:
     PROFILE_PATH = r"C:\Users\huynv\AppData\Local\Google\Chrome\User Data\Profile 2"
@@ -12,8 +14,12 @@ class DriverManager:
     def create_driver(self):
         options = Options()
 
-        # dùng profile cố định
-        options.add_argument(f"--user-data-dir={self.profile_path}")
+        # dùng profile cố định nếu có
+        if self.profile_path and os.path.exists(self.profile_path):
+            logger.info(f"Sử dụng profile cố định: {self.profile_path}")
+            options.add_argument(f"--user-data-dir={self.profile_path}")
+        else:
+            logger.warning("Không tìm thấy profile_path hoặc đường dẫn trống. Khởi tạo Chrome mới.")
 
         options.add_argument("--start-maximized")
         options.add_argument("--disable-notifications")
@@ -25,9 +31,7 @@ class DriverManager:
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option("useAutomationExtension", False)
 
-        service = Service()
-
-        driver = webdriver.Chrome(service=service, options=options)
+        driver = webdriver.Chrome(options=options)
 
         driver.implicitly_wait(5)
 

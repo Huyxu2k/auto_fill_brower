@@ -10,7 +10,7 @@ def main():
     reader_manager = ReaderManager(r"C:\Users\huynv\Desktop\Test.xlsx")
     persons: list[Person] = reader_manager.read_excel()
 
-    if persons.count == 0:
+    if len(persons) == 0:
         logger.info("Không có dữ liệu được load vào")
         return
     
