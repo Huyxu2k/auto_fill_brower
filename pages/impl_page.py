@@ -10,9 +10,13 @@ class TestPage(BaseForm):
     
     # button
     TRA_CUU = (By.ID, 'btnSubmitB')
+
+    def __init__(self, browser, timeout = 10 , url = URL):
+        self.url = url
+        super().__init__(browser)
     
     def open(self):
-        self.browser.get(self.URL)
+        self.browser.get(self.url)
 
     def fill(self, person: Person):
         input_ma_hs = self.get(self.MA_HO_SO)
@@ -23,5 +27,7 @@ class TestPage(BaseForm):
         input_captcha.clear()
         input_captcha.send_keys(person.yob)
 
-    def click(self):
+        self.wait()
+
+    def click_btn(self):
         self.click(self.TRA_CUU)

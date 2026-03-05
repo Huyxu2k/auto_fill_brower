@@ -32,7 +32,7 @@ class ReaderManager:
                 logger.warning(f"File Excel không có dữ liệu")
                 return []
             
-            persons = []
+            persons :list[Person] = []
             for _, row in data.iterrows():
                 person = Person(
                     id=str(row[0]).strip(),           
@@ -41,7 +41,7 @@ class ReaderManager:
                     state=bool(row[3])
                 )
                 persons.append(person)
-            #return data.to_dict(orient="records")
+            return persons
 
         except Exception as ex:
             logger.exception(f"Lỗi khi đọc file Excel: {str(ex)}") 

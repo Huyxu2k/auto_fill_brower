@@ -6,6 +6,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from loguru import logger
 import os
 from datetime import datetime
+import time
 
 class BaseForm(ABC):
     # -------------------------
@@ -46,6 +47,9 @@ class BaseForm(ABC):
     # -------------------------
     # WAIT METHODS
     # -------------------------
+
+    def wait(self, timeout=3):
+        time.sleep(timeout)
 
     def wait_until_visible(self, locator, timeout=None):
         timeout = timeout or self.timeout
@@ -193,14 +197,14 @@ class BaseForm(ABC):
     # AbstractCTION METHODS
     # -------------------------
 
-    @abstractmethod
-    def open(self):
-        pass
+    # @abstractmethod
+    # def open(self):
+    #     pass
 
-    @abstractmethod
-    def fill(self, data: dict):
-        pass
+    # @abstractmethod
+    # def fill(self, data: dict):
+    #     pass
 
-    @abstractmethod
-    def submit(self):
-        pass
+    # @abstractmethod
+    # def submit(self):
+    #     pass
