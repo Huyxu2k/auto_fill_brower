@@ -44,7 +44,7 @@ class LogHandler(QObject):
     # Đẩy log lên giao diện PyQt6
     n_log = pyqtSignal(str)
 
-    def write(self, message):
+    def write(self, message : str):
         if message.strip():
             self.n_log.emit(message.strip())
 
