@@ -11,7 +11,11 @@ class LoaderManager:
 
     def load_config(self) -> Optional[AutomationSteps]:
         try:
-            # check path, check định dạng file
+            if not os.path.exists(self.json_path):
+                 logger.error("Không tìm thấy file: {self.json_path}")
+                 return None
+            with open(self.json_path, 'r', encoding='utf-8') as f:
+                self.data = json.load(f)
 
             # Map đối tượng từ joson sang Step và add vào AutomationSteps
             # TODO

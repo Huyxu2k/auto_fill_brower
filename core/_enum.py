@@ -7,10 +7,10 @@ class ActionKey(Enum):
     WAIT_VISIBLE = "WAIT_VISIBLE"
 
 class LocatorType(Enum):
-    ID = "ID"
-    TEXT = "TEXT"
-    XPATH = "XPATH"
-    CSS = "CSS"
-    NAME = "NAME"
-    CLASS = "CLASS"
+    ID = "id"
+    TEXT = "text"
+    XPATH = "xpath"
+    CSS = "css"
+    NAME = "name"
+    CLASS = "class"
     
