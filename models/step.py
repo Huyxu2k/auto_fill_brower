@@ -10,11 +10,15 @@ class Step:
     value: Optional[Any] = None
     timeout: int = 3
 
-    # { "action": "click", "locator": "xpath", "selector": "//button[@id='submit']" }
-    # { "action": "fill", "id": "maHSB", "value": "@maso" }
-    # { "action": "click", "xpath": "//a[contains(text(),'Tra cứu')]" }
+    # { "action": "click",  "locator": "xpath", "selector": "//button[@id='submit']" }
+    # { "action": "click",  "locator": "id",    "selector": "maso" }
+    # { "action": "click",  "locator": "css",   "selector": "#maso" }
+    # { "action": "click",  "locator": "name",  "selector": "maso" }
+    # { "action": "click",  "locator": "class", "selector": "maso-input" }
+
+    # { "action": "sleep",  "locator": "", "selector": "maso-input" }
     @classmethod
-    def from_dict(step, data: dict):
+    def from_dict(cls, data: dict):
         action_key = ActionKey(data.get("action"))
         locator_key = LocatorType(data.get("locator", "id"))
         selector = data.get("selector")
@@ -27,7 +31,7 @@ class Step:
                     selector = data.get(ltr.value)
                     locator = ltr
                     break 
-        return step(
+        return cls(
             action = action_key,
             locator = locator,
             value = value,

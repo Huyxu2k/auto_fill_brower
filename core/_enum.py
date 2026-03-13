@@ -1,10 +1,10 @@
 from enum import Enum
 
 class ActionKey(Enum):
-    FILL = "FILL"
-    CLICK = "CLICK"
-    SLEEP = "SLEEP"
-    WAIT_VISIBLE = "WAIT_VISIBLE"
+    FILL = "fill"
+    CLICK = "click"
+    SLEEP = "sleep"
+    WAIT = "wait"
 
 class LocatorType(Enum):
     ID = "id"
